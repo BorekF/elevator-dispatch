@@ -13,8 +13,9 @@ void printTime(TimeMs t){
 }
 
 int main(){
-    GeneratorParams params{.floors = 5, .peoplePerMinute = 5, .simulationLength = 120000};
-    std::vector<Request> requests = generateRequests(1, params);
+    GeneratorParams params{.peoplePerMinute = 5, .simulationLength = 120000};
+    BuildingParams buildingParams{.floors = 5};
+    std::vector<Request> requests = generateRequests(1, params, buildingParams);
 
     std::cout << "    id      time    from -> to\n";
     for(const Request& r : requests){

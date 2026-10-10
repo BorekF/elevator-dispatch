@@ -4,13 +4,13 @@
 #include <cmath>
 
 
-std::vector<Request> generateRequests(uint32_t seed, const GeneratorParams& params){
-    assert(params.floors >= 2);
+std::vector<Request> generateRequests(uint32_t seed, const GeneratorParams& params, const BuildingParams& buildingParams){
+    assert(buildingParams.floors >= 2);
     assert(params.peoplePerMinute > 0);
     std::mt19937 rng(seed);
     std::exponential_distribution<double> gapDist(params.peoplePerMinute / 60'000.0);
-    std::uniform_int_distribution<int> startFloorDist(0, params.floors - 1);
-    std::uniform_int_distribution<int> endFloorDist(0, params.floors - 2);
+    std::uniform_int_distribution<int> startFloorDist(0, buildingParams.floors - 1);
+    std::uniform_int_distribution<int> endFloorDist(0, buildingParams.floors - 2);
 
     std::vector<Request> requests;
     TimeMs currTime = 0;
